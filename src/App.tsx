@@ -11,6 +11,8 @@ function App() {
       <HomePage />
       <About />
       <Experience />
+      {/* <Projects />
+      <Contact /> */}
     </>
   );
 }

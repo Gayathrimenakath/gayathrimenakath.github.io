@@ -4,33 +4,22 @@ export const HomePage = () => {
   return (
     <Box
       sx={{
-        paddingTop: "80px",
+        pt: 10, // spacing(10) = 80px
         minHeight: "100vh",
-        backgroundColor: "#f9f9f9",
+        background: (theme) => theme.palette.background.default,
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
-        padding: 4,
+        p: 4,
         flexWrap: "wrap",
         textAlign: { xs: "center", md: "left" },
-        background:
-          "linear-gradient(135deg,rgb(39, 44, 44) 0%,rgb(4, 13, 27) 100%)",
       }}
     >
       <Box>
-        <Typography
-          variant="h2"
-          component="h1"
-          gutterBottom
-          sx={{ fontWeight: "bold", color: "whitesmoke" }}
-        >
+        <Typography variant="h2" component="h1" gutterBottom>
           Gayathri Prakash Menakath
         </Typography>
-        <Typography
-          variant="h5"
-          color="text.secondary"
-          sx={{ mb: 2, color: "whitesmoke" }}
-        >
+        <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
           Full Stack Developer & React Enthusiast
         </Typography>
       </Box>
