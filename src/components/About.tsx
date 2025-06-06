@@ -1,10 +1,12 @@
-import { Box, Typography } from "@mui/material";
-import { theme } from "../theme";
+import { Box, Typography, useTheme } from "@mui/material";
 
 export const About = () => {
+  const theme = useTheme();
+
   return (
     <Box
       id="about"
+      component="section"
       sx={{
         minHeight: "100vh",
         background: theme.palette.background.default,

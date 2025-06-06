@@ -1,12 +1,14 @@
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
 
 export const HomePage = () => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
-        pt: 10, // spacing(10) = 80px
+        pt: 10,
         minHeight: "100vh",
-        background: (theme) => theme.palette.background.default,
+        background: theme.palette.background.default,
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
