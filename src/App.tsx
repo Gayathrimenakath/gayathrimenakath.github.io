@@ -3,6 +3,7 @@ import { About } from "./components/About";
 import { Experience } from "./components/Experience";
 import { Header } from "./components/Header";
 import { HomePage } from "./components/HomePage";
+import { Projects } from "./components/Projects";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <HomePage />
       <About />
       <Experience />
-      {/* <Projects />
+      <Projects />
+      {/* 
       <Contact /> */}
     </>
   );

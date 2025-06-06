@@ -89,15 +89,7 @@ export const Experience = () => {
                   elevation={3}
                   sx={{ p: 3, backgroundColor: theme.palette.background.paper }}
                 >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: "bold",
-                      color: theme.palette.text.primary,
-                    }}
-                  >
-                    {role}
-                  </Typography>
+                  <Typography variant="h6">{role}</Typography>
                   <Box
                     display="flex"
                     flexDirection="row"
@@ -128,21 +120,14 @@ export const Experience = () => {
                   </Box>
 
                   {!expandedItems[id] ? (
-                    <Typography variant="body2">{summary}</Typography>
+                    <Typography variant="body2" sx={{ mt: 1 }}>
+                      {summary}
+                    </Typography>
                   ) : (
                     <Box sx={{ mt: 1 }}>
                       <Box component="ul" sx={{ pl: 2, m: 0 }}>
                         {details.map((point, idx) => (
-                          <Typography
-                            key={idx}
-                            component="li"
-                            variant="body2"
-                            sx={{
-                              textAlign: "justify",
-                              mb: 1,
-                              lineHeight: 1.5,
-                            }}
-                          >
+                          <Typography key={idx} component="li" variant="body2">
                             {point}
                           </Typography>
                         ))}
@@ -156,17 +141,7 @@ export const Experience = () => {
                           sx={{ mt: 1 }}
                         >
                           {skills.map((skill, index) => (
-                            <Chip
-                              key={index}
-                              label={skill}
-                              size="small"
-                              sx={{
-                                backgroundColor: "#2a2a2a",
-                                color: "lightgray",
-                                fontSize: "0.75rem",
-                                borderRadius: 1,
-                              }}
-                            />
+                            <Chip key={index} label={skill} size="small" />
                           ))}
                         </Stack>
                       )}

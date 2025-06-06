@@ -20,7 +20,11 @@ export const theme = createTheme({
       color: "#F5F5F5",
     },
     h5: {
-      color: "#bbb", 
+      color: "#bbb",
+    },
+    h6: {
+      fontWeight: "bold",
+      color: "#F5F5F5",
     },
     body1: {
       fontWeight: 400,
@@ -28,6 +32,23 @@ export const theme = createTheme({
       lineHeight: 1.7,
       textAlign: "justify",
     },
+    body2: {
+      textAlign: "justify",
+      paddingBottom: 6,
+      lineHeight: 1.7,
+    },
   },
-  spacing: 4, 
+  spacing: 4,
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontSize: "0.75rem",
+          backgroundColor: "#2a2a2a",
+          color: "lightgray",
+          borderRadius: 4,
+        },
+      },
+    },
+  },
 });
