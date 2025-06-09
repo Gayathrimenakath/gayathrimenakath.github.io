@@ -12,7 +12,14 @@ import profileImage from "../assets/profileImage.jpg";
 export const HomePage = () => {
   const theme = useTheme();
 
-  const skills = ["ReactJS", "AWS", "GraphQL", "JavaScript", "TypeScript", "MUI"];
+  const skills = [
+    "ReactJS",
+    "AWS",
+    "GraphQL",
+    "JavaScript",
+    "TypeScript",
+    "MUI",
+  ];
 
   return (
     <Box
@@ -28,7 +35,12 @@ export const HomePage = () => {
         textAlign: { xs: "center", md: "left" },
       }}
     >
-      <Box width={{ xs: "100%", md: "70%" }}>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        alignItems={{ xs: "center", md: "flex-start" }}
+        width={{ xs: "100%", md: "70%" }}
+      >
         <Typography variant="h2" component="h1" gutterBottom>
           Gayathri Prakash Menakath
         </Typography>
