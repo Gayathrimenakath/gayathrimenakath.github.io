@@ -1,4 +1,5 @@
 import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
+import profileImage from "../assets/profileImage.jpg"; // or use relative path
 
 export const HomePage = () => {
   const theme = useTheme();
@@ -30,8 +31,13 @@ export const HomePage = () => {
         <IconButton sx={{ p: 0 }}>
           <Avatar
             alt="Gayathri Prakash Menakath"
-            src="/assets/react.svg"
-            sx={{ width: 150, height: 150 }}
+            src={profileImage}
+            sx={{
+              width: 150,
+              height: 150,
+              transform: "scale(1.1)",
+              objectFit: "cover",
+            }}
           />
         </IconButton>
       </Box>

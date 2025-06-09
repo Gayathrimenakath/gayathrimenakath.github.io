@@ -1,13 +1,16 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { useState } from "react";
 
 const pages = [
@@ -17,8 +20,10 @@ const pages = [
   { name: "Contact", id: "contact" },
 ];
 
-export const Header = () => {
+export const Header = (props: { activeSection: string }) => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  const theme = useTheme();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -36,13 +41,13 @@ export const Header = () => {
         background:
           "linear-gradient(135deg,rgb(39, 44, 44) 0%,rgb(4, 13, 27) 100%)",
         boxShadow: "none",
-        color: "whitesmoke",
+        color: theme.palette.text.primary,
       }}
     >
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
-          sx={{ justifyContent: "flex-end", color: "whitesmoke" }}
+          sx={{ justifyContent: "flex-end", color: theme.palette.text.primary }}
         >
           <Box
             sx={{
@@ -77,18 +82,16 @@ export const Header = () => {
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                  <a
-                    key={page.id}
-                    href={`#${page.id}`}
-                    onClick={handleCloseNavMenu}
-                    style={{ textDecoration: "none" }}
-                  >
-                    {" "}
-                    <Typography sx={{ textAlign: "center" }}>
-                      {page.name}
-                    </Typography>
-                  </a>
+                <MenuItem
+                  key={page.id}
+                  onClick={handleCloseNavMenu}
+                  component="a"
+                  href={`#${page.id}`}
+                  selected={props.activeSection === page.id}
+                >
+                  <Typography sx={{ textAlign: "center" }}>
+                    {page.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -98,25 +101,24 @@ export const Header = () => {
             sx={{
               flexGrow: 0,
               display: { xs: "none", md: "flex" },
-              color: "whitesmoke",
+              color: theme.palette.text.primary,
             }}
           >
             {pages.map((page) => (
-              <a
+              <Button
                 key={page.id}
+                component="a"
                 href={`#${page.id}`}
                 onClick={handleCloseNavMenu}
-                style={{ textDecoration: "none" }}
+                sx={{
+                  my: 2,
+                  display: "block",
+                  color:
+                    props.activeSection === page.id ? "primary.main" : "white",
+                }}
               >
-                {" "}
-                <Button
-                  key={page.id}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page.name}
-                </Button>
-              </a>
+                {page.name}
+              </Button>
             ))}
           </Box>
         </Toolbar>
