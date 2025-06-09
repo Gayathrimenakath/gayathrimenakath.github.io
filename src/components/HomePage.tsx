@@ -1,8 +1,18 @@
-import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
-import profileImage from "../assets/profileImage.jpg"; // or use relative path
+import {
+  Avatar,
+  Box,
+  Chip,
+  IconButton,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import profileImage from "../assets/profileImage.jpg";
 
 export const HomePage = () => {
   const theme = useTheme();
+
+  const skills = ["ReactJS", "AWS", "GraphQL", "JavaScript", "TypeScript", "MUI"];
 
   return (
     <Box
@@ -18,13 +28,27 @@ export const HomePage = () => {
         textAlign: { xs: "center", md: "left" },
       }}
     >
-      <Box>
+      <Box width={{ xs: "100%", md: "70%" }}>
         <Typography variant="h2" component="h1" gutterBottom>
           Gayathri Prakash Menakath
         </Typography>
         <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
-          Full Stack Developer & React Enthusiast
+          Full-stack developer focused on building seamless user experiences
+          using modern JavaScript technologies.
         </Typography>
+        {skills?.length > 0 && (
+          <Stack
+            direction="row"
+            spacing={1}
+            useFlexGap
+            flexWrap="wrap"
+            sx={{ mt: 1 }}
+          >
+            {skills.map((skill, index) => (
+              <Chip key={index} label={skill} size="small" variant="outlined" />
+            ))}
+          </Stack>
+        )}
       </Box>
 
       <Box>
