@@ -1,3 +1,4 @@
+import { useForm, ValidationError } from "@formspree/react";
 import { Email, GitHub, LinkedIn, LocationOn } from "@mui/icons-material";
 import {
   Box,
@@ -9,26 +10,12 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { useState } from "react";
 
+const formId = import.meta.env.VITE_FORMSPREE_ID;
 export const Contact = () => {
   const theme = useTheme();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormData({ name: "", email: "", message: "" });
-  };
+  const [state, handleSubmit] = useForm(formId);
 
   return (
     <Box
@@ -121,48 +108,55 @@ export const Contact = () => {
 
         {/* Contact Form */}
         <Grid size={{ xs: 4, md: 6 }} p={1}>
-          <Box component="form" onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid size={12}>
-                <TextField
-                  label="Name"
-                  name="name"
-                  fullWidth
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
+          {state.succeeded ? (
+            <Box textAlign="center">
+              <Typography variant="h5" gutterBottom>
+                🎉 Thank you for dropping a message!
+              </Typography>
+            </Box>
+          ) : (
+            <Box component="form" onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid size={12}>
+                  <TextField label="Name" name="name" fullWidth required />
+                </Grid>
+                <Grid size={12}>
+                  <TextField
+                    label="Email"
+                    name="email"
+                    type="email"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid size={12}>
+                  <TextField
+                    label="Message"
+                    name="message"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    required
+                  />
+                  <ValidationError
+                    prefix="Email"
+                    field="email"
+                    errors={state.errors}
+                  />
+                </Grid>
+                <Grid size={12}>
+                  <Button
+                    type="submit"
+                    disabled={state.submitting}
+                    variant="contained"
+                    fullWidth
+                  >
+                    {state.submitting ? "Sending..." : "Drop me a message"}
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid size={12}>
-                <TextField
-                  label="Email"
-                  name="email"
-                  type="email"
-                  fullWidth
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </Grid>
-              <Grid size={12}>
-                <TextField
-                  label="Message"
-                  name="message"
-                  multiline
-                  rows={4}
-                  fullWidth
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </Grid>
-              <Grid size={12}>
-                <Button type="submit" variant="contained" fullWidth>
-                  Send Message
-                </Button>
-              </Grid>
-            </Grid>
-          </Box>
+            </Box>
+          )}
         </Grid>
       </Grid>
     </Box>
