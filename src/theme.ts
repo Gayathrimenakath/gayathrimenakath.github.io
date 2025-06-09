@@ -34,6 +34,7 @@ export const theme = createTheme({
     },
     body2: {
       textAlign: "justify",
+      color: "#bbb",
       paddingBottom: 6,
       lineHeight: 1.7,
     },

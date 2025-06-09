@@ -33,7 +33,12 @@ export const Projects = () => {
         Projects
       </Typography>
 
-      <Grid container spacing={3} sx={{ maxWidth: "100%" }}>
+      <Grid
+        container
+        spacing={{ xs: 1, md: 3 }}
+        columns={{ xs: 4, md: 12 }}
+        sx={{ maxWidth: "100%" }}
+      >
         {ProjectData.map(
           ({ id, title, degree, date, description, tech, link }) => (
             <Grid size={6} key={id}>
@@ -42,7 +47,7 @@ export const Projects = () => {
                 sx={{
                   m: 3,
                   p: 5,
-                  height: 450,
+                  height: 400,
                   backgroundColor: theme.palette.background.paper,
                   display: "flex",
                   flexDirection: "column",
