@@ -1,5 +1,11 @@
 import { useForm, ValidationError } from "@formspree/react";
-import { Email, GitHub, LinkedIn, LocationOn } from "@mui/icons-material";
+import {
+  Download,
+  Email,
+  GitHub,
+  LinkedIn,
+  LocationOn,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -10,6 +16,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import resume from "../assets/resume_GayathriMenakath.pdf";
 
 const formId = import.meta.env.VITE_FORMSPREE_ID;
 export const Contact = () => {
@@ -59,13 +66,14 @@ export const Contact = () => {
             gap: 2,
           }}
         >
-          <Typography variant="h5">Let’s connect!</Typography>
+          <Typography variant="h5">Let's connect!</Typography>
           <Box display="flex" alignItems="center" gap={1}>
             <LocationOn sx={{ fontSize: 14, color: "lightgray" }} />
             <Typography variant="body2" sx={{ pb: 0 }}>
               Brisbane, Australia
             </Typography>
           </Box>
+
           <Box>
             <IconButton
               href="https://github.com/Gayathrimenakath"
@@ -89,7 +97,24 @@ export const Contact = () => {
             >
               <Email fontSize="large" />
             </IconButton>
+          </Box>
+          <Box p={4}>
+            <Typography variant="body2" sx={{ pb: 0 }}>
+              Here's my resume, feel free to download it!{" "}
+            </Typography>
 
+            <Button
+              variant="outlined"
+              startIcon={<Download />}
+              href={resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+            >
+              Resume
+            </Button>
+          </Box>
+          <Box p={1}>
             <Typography variant="body2" sx={{ mt: 2 }}>
               Curious about what’s on my mind beyond code? Explore my thoughts
               on life, people, and experiences in my{" "}
