@@ -1,4 +1,7 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Description, Email, GitHub, LinkedIn } from "@mui/icons-material";
+import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
+import resume from "../assets/resume_GayathriMenakath.pdf";
+
 
 export const About = () => {
   const theme = useTheme();
@@ -20,26 +23,71 @@ export const About = () => {
       <Typography variant="h2" component="h2" gutterBottom>
         About Me
       </Typography>
-      <Typography variant="body1" sx={{ maxWidth: "800px", mt: 3 }}>
-        Hi! I'm Gayathri, a full-stack developer with around 4 years of
-        experience building scalable, user-centric web applications. I've
-        primarily worked in fast-paced B2B SaaS and AI startups, contributing to
-        end-to-end feature development using React, TypeScript, GraphQL, and
-        AWS. I'm comfortable across the stack, from designing responsive
-        frontends to building reliable backend services and enjoy collaborating
-        closely with product and design teams to deliver thoughtful solutions.
-      </Typography>
-      <Typography variant="body1" sx={{ maxWidth: "800px", mt: 4 }}>
-        My experience spans cloud infrastructure (AWS), CI/CD pipelines,
-        performance monitoring, and delivering intuitive user experiences. I'm
-        particularly passionate about clean, maintainable code and leveraging
-        technology to solve real-world problems.
-      </Typography>
-      <Typography variant="body1" sx={{ maxWidth: "800px", mt: 4, mb: 2 }}>
-        Currently based in Brisbane with full Australian work rights, I'm always
-        open to opportunities where I can continue to grow and make an impact
-        through thoughtful engineering.
-      </Typography>
+
+      <Box sx={{ width: "100%", maxWidth: 800, textAlign: "left" }}>
+        <Typography variant="body1" sx={{ mt: 3 }}>
+          Hi! I'm Gayathri, a full stack engineer with 4+ years of experience
+          building data-heavy products with React, TypeScript, GraphQL and
+          PostgreSQL. At AgriProve, a soil-carbon platform, I've worked across
+          the whole stack, from customer-facing features to owning the
+          carbon-crediting calculator and the systems around it.
+        </Typography>
+        <Typography variant="body1" sx={{ mt: 4 }}>
+          I enjoy problems where the data has to be right: implementing a
+          regulated carbon-crediting method and reconciling it against lodged
+          reports, building geospatial pipelines with PostGIS and Temporal, and
+          generating print-quality reports with maps. Before AgriProve, I built
+          cloud applications on AWS and GraphQL at Voiseed, an AI
+          text-to-speech startup in Milan.
+        </Typography>
+        <Typography variant="body1" sx={{ mt: 4 }}>
+          I work closely with science, GIS, product and operations teams, write
+          design documents, review code, and use AI tools such as Claude Code
+          day to day.
+        </Typography>
+        <Typography variant="body1" sx={{ mt: 4, mb: 2 }}>
+          Based in Brisbane with full Australian work rights, and open to
+          remote roles across Australia as well as hybrid or on-site roles in
+          Brisbane.
+        </Typography>
+
+        <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap" sx={{ mt: 4, mb:2 }}>
+          <Button
+            variant="contained"
+            startIcon={<Email />}
+            href="mailto:gayathrimenakath@gmail.com"
+          >
+            Email
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<LinkedIn />}
+            href="https://www.linkedin.com/in/gayathri-menakath-37ab31106"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<GitHub />}
+            href="https://github.com/Gayathrimenakath"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<Description />}
+            href="resume"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Resume
+          </Button>
+        </Stack>
+      </Box>
     </Box>
   );
 };

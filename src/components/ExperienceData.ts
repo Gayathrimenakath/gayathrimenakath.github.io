@@ -1,89 +1,129 @@
+export interface Role {
+  title: string;
+  period: string;
+  details: string[];
+}
+
 export interface Experience {
   id: string;
-  period: string;
-  role: string;
+  period: string; // overall span, shown on the timeline
   company: string;
   country: string;
-  type: string;
-  skills: string[];
-  details: string[];
+  type: "job" | "education";
   summary: string;
+  skills: string[];
+  roles: Role[]; // newest first; one item for single-role entries
 }
 
 export const experiences: Experience[] = [
   {
-    id: "voiseed-1",
-    period: "Jan 2023 - Nov 2024",
-    role: "Software Engineer",
-    country: "Milan, Italy",
-    company: "Voiseed",
+    id: "agriprove",
+    period: "Jun 2025 - Present",
+    company: "AgriProve",
+    country: "Australia",
     type: "job",
+    summary:
+      "Building a geospatial soil-carbon platform end to end, from TypeScript, React and GraphQL front ends to regulated crediting calculations and data pipelines.",
     skills: [
-      "ReactJS",
-      "AWS",
-      "GraphQL",
+      "React",
       "TypeScript",
+      "Apollo",
+      "GraphQL",
+      "Prisma",
+      "PostgreSQL",
+      "PostGIS",
+      "Python",
+      "Temporal",
+      "pg-boss",
+      "Puppeteer",
+    ],
+    roles: [
+      {
+        title: "Full Stack TypeScript Engineer",
+        period: "Jun 2025 - Present",
+        details: [
+          "Built customer-facing features end to end with React, TypeScript, Apollo and GraphQL, from a map-based dashboard with a full mobile experience to a credentials hub with three certification application flows and herd-insights analytics.",
+          "Designed GraphQL APIs on PostgreSQL (Prisma) behind these features, including a composable product framework that launched four partner marketplace products.",
+          "Own the build of the carbon-crediting calculator, implementing the CER Schedule 2 soil carbon method in Python, reconciled against lodged offsets reports.",
+          "Architected a print-quality reporting engine (HTML and Puppeteer): 12-page PDFs with 300 DPI maps in under 2 seconds.",
+          "Designed an automated project-setup pipeline (PostGIS, Temporal, Python) that replaced manual QGIS workflows.",
+          "Led the migration of background jobs from AWS SQS to PostgreSQL (pg-boss).",
+          "Coordinate releases, review code and write the design documents that set technical direction.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "voiseed",
+    period: "Aug 2021 - Nov 2024",
+    company: "Voiseed",
+    country: "Milan, Italy",
+    type: "job",
+    summary:
+      "Built cloud-based applications for controlling AI-powered text-to-speech modules, starting as an intern and growing into a full-time software engineer.",
+    skills: [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "AWS",
       "Redux",
       "Material-UI",
       "Prometheus",
       "Grafana",
-    ],
-    summary:
-      "Developed a cloud-based web application with React, TypeScript, GraphQL, and AWS serverless services. Integrated AWS Lambda functions with DynamoDB for efficient data handling and backend logic.",
-    details: [
-      "Developed a scalable, cloud-based web app using React, TypeScript, and GraphQL.",
-      "Built serverless backend with AWS Lambda and DynamoDB for efficient data handling.",
-      "Integrated pre-deployed deep learning models for real-time inference.",
-      "Managed automated CI/CD pipelines via AWS Amplify.",
-      "Implemented system monitoring and optimization with Prometheus and Grafana.",
-      "Maintained technical documentation with Docusaurus.",
-    ],
-  },
-  {
-    id: "voiseed-2",
-    period: "Sept 2021 - Dec 2022",
-    role: "Software Engineer",
-    company: "Voiseed",
-    country: "Milan, Italy",
-    type: "job",
-    skills: [
-      "ReactJS",
-      "AWS",
-      "GraphQL",
-      "Redux",
-      "Material-UI",
-      "Git",
       "Strapi",
       "Gatsby",
     ],
-    summary:
-      "Worked in a cross-functional team to build cloud-based applications for controlling AI-powered TTS modules. Developed responsive UIs with React and GraphQL, and implemented content-driven websites using Gatsby and Strapi.",
-    details: [
-      "Developed responsive user interfaces using React and GraphQL, ensuring seamless frontend-backend integration.",
-      "Created static content-driven websites using Gatsby and Strapi (headless CMS).",
-      "Designed custom content models, user roles, and permissions tailored to team needs.",
-      "Integrated third-party services and APIs for enhanced functionality.",
-      "Maintained detailed technical documentation to support development workflows.",
+    roles: [
+      {
+        title: "Software Engineer",
+        period: "Jan 2023 - Nov 2024",
+        details: [
+          "Developed a scalable, cloud-based web app using React, TypeScript, and GraphQL.",
+          "Built serverless backend with AWS Lambda and DynamoDB for efficient data handling.",
+          "Integrated pre-deployed deep learning models for real-time inference.",
+          "Managed automated CI/CD pipelines via AWS Amplify.",
+          "Implemented system monitoring and optimization with Prometheus and Grafana.",
+          "Maintained technical documentation with Docusaurus.",
+        ],
+      },
+      {
+        title: "Intern",
+        period: "Aug 2021 - Dec 2022",
+        details: [
+          "Developed responsive user interfaces using React and GraphQL, ensuring seamless frontend-backend integration.",
+          "Created static content-driven websites using Gatsby and Strapi (headless CMS).",
+          "Designed custom content models, user roles, and permissions tailored to team needs.",
+          "Integrated third-party services and APIs for enhanced functionality.",
+          "Maintained detailed technical documentation to support development workflows.",
+        ],
+      },
     ],
   },
   {
     id: "masters",
     period: "2019 - 2022",
-    role: "Masters",
     company: "Politecnico di Milano",
     country: "Milan, Italy",
     type: "education",
-    skills: [],
     summary:
       "Completed advanced coursework in Software Engineering, Business Information Systems, Data Engineering, Machine Learning, and Natural Language Processing. Developed a strong foundation in building intelligent, scalable systems and bridging data insights with business applications.",
-    details: [],
+    skills: [],
+    roles: [
+      {
+        title: "M.Sc. in Computer Science and Engineering",
+        period: "2019 - 2022",
+        details: [],
+      },
+    ],
   },
   {
-    id: "asteria-1",
-    period: "June 2018 - July 2019",
-    role: "Software Developer",
+    id: "asteria",
+    period: "Jan 2018 - Jul 2019",
     company: "Asteria Aerospace",
     country: "Bangalore, India",
+    type: "job",
+    summary:
+      "Developed backend systems for drone data processing and secure cloud access, using Go, AWS, and gRPC. Focused on authentication, role-based access control, and centralized logging.",
     skills: [
       "Golang",
       "AWS",
@@ -91,42 +131,46 @@ export const experiences: Experience[] = [
       "Protocol Buffers",
       "Docker",
       "PostgreSQL",
+      "ReactJS",
       "Git",
     ],
-    type: "job",
-    summary:
-      "Developed backend systems for drone data processing and secure cloud access, using Go, AWS, and gRPC. Focused on authentication, role-based access control, and centralized logging.",
-    details: [
-      "Built software for uploading drone data to AWS and processing aerial imagery (orthophotos, DSM, DTM).",
-      "Integrated Auth0 with JWTs for secure user authentication.",
-      "Implemented RBAC using Go libraries like Casbin for flexible access control.",
-      "Developed high-performance gRPC APIs with Protocol Buffers for data serialization.",
-      "Automated log ingestion from AWS CloudWatch and applications into a centralized system.",
+    roles: [
+      {
+        title: "Software Developer",
+        period: "Jun 2018 - Jul 2019",
+        details: [
+          "Built software for uploading drone data to AWS and processing aerial imagery (orthophotos, DSM, DTM).",
+          "Integrated Auth0 with JWTs for secure user authentication.",
+          "Implemented RBAC using Go libraries like Casbin for flexible access control.",
+          "Developed high-performance gRPC APIs with Protocol Buffers for data serialization.",
+          "Automated log ingestion from AWS CloudWatch and applications into a centralized system.",
+        ],
+      },
+      {
+        title: "Technical Intern",
+        period: "Jan 2018 - May 2018",
+        details: [
+          "Built responsive user interfaces with ReactJS and Bootstrap.",
+          "Worked in an agile team, using Jira for project tracking and Git for version control.",
+        ],
+      },
     ],
-  },
-  {
-    id: "asteria-2",
-    period: "Jan 2018 - May 2018",
-    role: "Technical Intern",
-    company: "Asteria Aerospace",
-    country: "Bangalore, India",
-
-    type: "job",
-    skills: ["ReactJS", "Bootstrap", "Git"],
-    summary:
-      "Contributed to frontend development using ReactJS and Bootstrap, building responsive user interfaces. Collaborated in an agile environment using Jira for project tracking and Git for version control.",
-    details: [],
   },
   {
     id: "bachelors",
     period: "2014 - 2018",
-    role: "Bachelors",
-    country: "Kerala, India",
     company: "Amrita Vishwa Vidyapeetham",
+    country: "Kerala, India",
     type: "education",
-    skills: [],
     summary:
       "Developed core technical skills in software engineering and computational thinking through coursework and practical projects.",
-    details: [],
+    skills: [],
+    roles: [
+      {
+        title: "B.Tech in Computer Science and Engineering",
+        period: "2014 - 2018",
+        details: [],
+      },
+    ],
   },
 ];

@@ -56,115 +56,146 @@ export const Experience = () => {
       <Timeline position="alternate" sx={{ maxWidth: 900, width: "100%" }}>
         {experiences.map(
           (
-            {
-              id,
-              period,
-              role,
-              company,
-              country,
-              summary,
-              details,
-              type,
-              skills,
-            },
+            { id, period, company, country, summary, roles, type, skills },
             index
-          ) => (
-            <TimelineItem key={id}>
-              <TimelineOppositeContent
-                sx={{ m: "auto 0" }}
-                align="right"
-                variant="body2"
-                color="text.secondary"
-              >
-                {period}
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot
-                  color={type === "education" ? "secondary" : "primary"}
-                />
-                {index < experiences.length - 1 && <TimelineConnector />}
-              </TimelineSeparator>
-              <TimelineContent sx={{ py: 2, px: 2 }}>
-                <Paper
-                  elevation={3}
-                  sx={{ p: 3, backgroundColor: theme.palette.background.paper }}
+          ) => {
+            const [current, ...earlier] = roles;
+            const hasDetails = roles.some((r) => r.details.length > 0);
+            const isExpanded = !!expandedItems[id];
+            const isLeftCard = index % 2 === 0;
+
+            return (
+              <TimelineItem key={id}>
+                <TimelineOppositeContent
+                  sx={{ m: "auto 0" }}
+                  align="right"
+                  variant="body2"
+                  color="text.secondary"
                 >
-                  <Typography variant="h6">{role}</Typography>
-                  <Box
-                    display="flex"
-                    flexDirection="row"
-                    justifyContent={index % 2 === 0 ? "flex-start" : "flex-end"}
-                    gap={{ xs: 1, sm: 2 }}
+                  {period}
+                </TimelineOppositeContent>
+                <TimelineSeparator>
+                  <TimelineDot
+                    color={type === "education" ? "secondary" : "primary"}
+                  />
+                  {index < experiences.length - 1 && <TimelineConnector />}
+                </TimelineSeparator>
+                <TimelineContent sx={{ py: 2, px: 2 }}>
+                  <Paper
+                    elevation={3}
+                    sx={{
+                      p: 3,
+                      backgroundColor: theme.palette.background.paper,
+                    }}
                   >
-                    <Typography
-                      variant="subtitle2"
-                      sx={{ color: "lightgray", mb: 1 }}
+                    <Typography variant="h6">{current.title}</Typography>
+                    {earlier.length > 0 && (
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        component="p"
+                      >
+                        Previously {earlier.map((r) => r.title).join(", ")}
+                      </Typography>
+                    )}
+                    <Box
+                      display="flex"
+                      flexDirection="row"
+                      justifyContent={isLeftCard ? "flex-start" : "flex-end"}
+                      gap={{ xs: 1, sm: 2 }}
+                      sx={{ mt: 0.5 }}
                     >
-                      {company}
-                    </Typography>
+                      <Typography
+                        variant="subtitle2"
+                        sx={{ color: "lightgray", mb: 1 }}
+                      >
+                        {company}
+                      </Typography>
 
-                    <Typography
-                      variant="subtitle2"
-                      sx={{
-                        color: "lightgray",
-                        mb: 1,
-                        fontStyle: "italic",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 0.5,
-                      }}
-                    >
-                      <LocationOn sx={{ fontSize: 12, color: "lightgray" }} />
-                      {country}
-                    </Typography>
-                  </Box>
-
-                  {!expandedItems[id] ? (
-                    <Typography variant="body2" sx={{ mt: 1 }}>
-                      {summary}
-                    </Typography>
-                  ) : (
-                    <Box sx={{ mt: 1 }}>
-                      <Box component="ul" sx={{ pl: 2, m: 0 }}>
-                        {details.map((point, idx) => (
-                          <Typography key={idx} component="li" variant="body2">
-                            {point}
-                          </Typography>
-                        ))}
-                      </Box>
-                      {skills?.length > 0 && (
-                        <Stack
-                          direction="row"
-                          spacing={1}
-                          useFlexGap
-                          flexWrap="wrap"
-                          sx={{ mt: 1 }}
-                        >
-                          {skills.map((skill, index) => (
-                            <Chip key={index} label={skill} size="small" />
-                          ))}
-                        </Stack>
-                      )}
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          color: "lightgray",
+                          mb: 1,
+                          fontStyle: "italic",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 0.5,
+                        }}
+                      >
+                        <LocationOn sx={{ fontSize: 12, color: "lightgray" }} />
+                        {country}
+                      </Typography>
                     </Box>
-                  )}
-                  {details.length > 0 && (
-                    <Button
-                      size="small"
-                      onClick={() => toggleExpand(id)}
-                      endIcon={
-                        expandedItems[id] ? <ExpandLess /> : <ExpandMore />
-                      }
-                      sx={{ mt: 2, color: "lightblue", textTransform: "none" }}
-                      aria-expanded={expandedItems[id] ? "true" : "false"}
-                      aria-controls={`${id}-details`}
-                    >
-                      {expandedItems[id] ? "Show less" : "Read more"}
-                    </Button>
-                  )}
-                </Paper>
-              </TimelineContent>
-            </TimelineItem>
-          )
+
+                    {!isExpanded ? (
+                      <Typography variant="body2" sx={{ mt: 1 }}>
+                        {summary}
+                      </Typography>
+                    ) : (
+                      <Box id={`${id}-details`} sx={{ mt: 1 }}>
+                        {roles.map((role) => (
+                          <Box key={`${role.title}-${role.period}`} sx={{ mb: 1.5 }}>
+                            {roles.length > 1 && (
+                              <Typography
+                                variant="subtitle2"
+                                sx={{ fontWeight: "bold", mb: 0.5 }}
+                              >
+                                {role.title} · {role.period}
+                              </Typography>
+                            )}
+                            {role.details.length > 0 && (
+                              <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                                {role.details.map((point, idx) => (
+                                  <Typography
+                                    key={idx}
+                                    component="li"
+                                    variant="body2"
+                                  >
+                                    {point}
+                                  </Typography>
+                                ))}
+                              </Box>
+                            )}
+                          </Box>
+                        ))}
+                        {skills.length > 0 && (
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            useFlexGap
+                            flexWrap="wrap"
+                            sx={{ mt: 1 }}
+                          >
+                            {skills.map((skill) => (
+                              <Chip key={skill} label={skill} size="small" />
+                            ))}
+                          </Stack>
+                        )}
+                      </Box>
+                    )}
+
+                    {hasDetails && (
+                      <Button
+                        size="small"
+                        onClick={() => toggleExpand(id)}
+                        endIcon={isExpanded ? <ExpandLess /> : <ExpandMore />}
+                        sx={{
+                          mt: 2,
+                          color: "lightblue",
+                          textTransform: "none",
+                        }}
+                        aria-expanded={isExpanded}
+                        aria-controls={`${id}-details`}
+                      >
+                        {isExpanded ? "Show less" : "Read more"}
+                      </Button>
+                    )}
+                  </Paper>
+                </TimelineContent>
+              </TimelineItem>
+            );
+          }
         )}
       </Timeline>
     </Box>

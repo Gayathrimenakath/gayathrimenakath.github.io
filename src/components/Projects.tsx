@@ -40,20 +40,22 @@ export const Projects = () => {
         sx={{ maxWidth: "100%" }}
       >
         {ProjectData.map(
-          ({ id, title, degree, date, description, tech, link }) => (
-            <Grid size={6} key={id}>
+          ({ id, title, context, date, description, tech, link, linkLabel }) => (
+            <Grid size={6} key={id} sx={{ display: "flex" }}>
               <Paper
                 elevation={3}
                 sx={{
                   m: 3,
                   p: 5,
-                  height: 400,
+                  flexGrow: 1,
                   backgroundColor: theme.palette.background.paper,
                   display: "flex",
                   flexDirection: "column",
                 }}
               >
-                <Typography variant="h6">{title}</Typography>
+                <Typography variant="h6" component="h3">
+                  {title}
+                </Typography>
                 <Typography
                   variant="subtitle2"
                   sx={{
@@ -62,62 +64,53 @@ export const Projects = () => {
                     mb: 1,
                   }}
                 >
-                  {degree} • {date}
+                  {context}
+                  {date ? ` • ${date}` : ""}
                 </Typography>
-                <Box
-                  component="ul"
-                  height={"70%"}
-                  sx={{
-                    pl: 2,
-                    pt: 2,
-                    m: 1,
-                    flexGrow: 1,
-                    overflowY: "auto",
-                    scrollbarWidth: "thin",
-                    scrollbarColor: "#555 #1f1f1f",
-                  }}
-                >
+
+                <Box component="ul" sx={{ pl: 2, pt: 1, m: 0, flexGrow: 1 }}>
                   {description.map((point, index) => (
-                    <Typography key={index} component="li" variant="body2">
+                    <Typography
+                      key={index}
+                      component="li"
+                      variant="body2"
+                      sx={{ mb: 1 }}
+                    >
                       {point}
                     </Typography>
                   ))}
                 </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 0.5,
-                    mt: 1,
-                  }}
-                >
-                  <Link
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    underline="hover"
-                    variant="body2"
-                    sx={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 0.5,
-                    }}
-                  >
-                    Visit Paper
-                    <Launch fontSize="inherit" />
-                  </Link>
-                </Box>
 
-                {tech?.length > 0 && (
+                {link && (
+                  <Box sx={{ mt: 1 }}>
+                    <Link
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      underline="hover"
+                      variant="body2"
+                      sx={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 0.5,
+                      }}
+                    >
+                      {linkLabel ?? "View"}
+                      <Launch fontSize="inherit" />
+                    </Link>
+                  </Box>
+                )}
+
+                {tech.length > 0 && (
                   <Stack
                     direction="row"
                     spacing={1}
                     useFlexGap
                     flexWrap="wrap"
-                    sx={{ mt: 1 }}
+                    sx={{ mt: 2 }}
                   >
-                    {tech.map((skill, index) => (
-                      <Chip key={index} label={skill} size="small" />
+                    {tech.map((skill) => (
+                      <Chip key={skill} label={skill} size="small" />
                     ))}
                   </Stack>
                 )}
