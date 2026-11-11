@@ -18,7 +18,9 @@ export const HomePage = () => {
     "GraphQL",
     "JavaScript",
     "TypeScript",
-    "MUI",
+    "PostgreSQL", 
+    "PostGIS", 
+    "Temporal",
   ];
 
   return (
@@ -45,8 +47,7 @@ export const HomePage = () => {
           Gayathri Prakash Menakath
         </Typography>
         <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
-          Full-stack developer focused on building seamless user experiences
-          using modern JavaScript technologies.
+        Full stack engineer building data-heavy products with React, TypeScript and PostgreSQL, from geospatial pipelines to regulated calculations.
         </Typography>
         {skills?.length > 0 && (
           <Stack

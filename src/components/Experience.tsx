@@ -43,6 +43,7 @@ export const Experience = () => {
         alignItems: "center",
         px: 4,
         py: 8,
+        scrollMarginTop: "90px"
       }}
     >
       <Typography

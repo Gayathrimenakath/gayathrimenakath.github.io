@@ -16,10 +16,10 @@ export const ProjectData: Project[] = [
     context: "AgriProve",
     date: "2026",
     description: [
-      "Automated a manual QGIS step: before land can be split into carbon projects, areas that can't earn credits (steep slopes, roads, buildings, power lines, dams) must be excluded. The system proposes zones per project and an ops user reviews and confirms them.",
-      "Combined several public sources: a national elevation model, OpenStreetMap for roads and tracks, Geoscience Australia services for power lines and dams, and building footprints. Everything is normalised to one coordinate system, with geodetic area calculations that match the downstream crediting code.",
-      "Made the pipeline resilient to rate-limited and unreliable external sources: consolidated OpenStreetMap requests and improved retry handling, moved building detection from a rate-limited API to a pre-loaded Overture dataset in PostGIS, and cached repeated lookups in the database.",
-      "Built on Temporal with one workflow per project running in parallel, so one slow or failing upstream source affects only that project. Only unreviewed projects regenerate, and re-saving resets downstream steps so the data can't drift out of sync.",
+      "Built the step that finds land that can't earn carbon credits (steep slopes, roads, buildings, power lines, dams) and excludes it from a property. Operations staff used to draw these zones by hand in QGIS, a desktop mapping tool; now the system proposes them and a team member reviews and confirms.",
+      "Pulls the data from public sources: a national elevation model for slope, OpenStreetMap for roads and tracks, Geoscience Australia for power lines and dams, and building footprints. Everything is converted to one coordinate system, with area calculations consistent with the later crediting calculations.",
+      "Made the pipeline reliable when external sources are rate-limited or slow: consolidated OpenStreetMap requests, improved retry handling, moved building detection from a rate-limited API to a pre-loaded Overture dataset in PostGIS, and cached repeated lookups in the database.",
+      "Runs one Temporal workflow per project in parallel, so a slow or failing data source only affects that project. Confirmed zones aren't regenerated, and re-saving resets the later setup steps so the data can't get out of sync.",
     ],
     tech: [
       "Python",

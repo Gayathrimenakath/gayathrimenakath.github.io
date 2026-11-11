@@ -23,7 +23,7 @@ export const experiences: Experience[] = [
     country: "Australia",
     type: "job",
     summary:
-      "Building a geospatial soil-carbon platform end to end, from TypeScript, React and GraphQL front ends to regulated crediting calculations and data pipelines.",
+      "Building a geospatial soil-carbon platform end to end, from React and TypeScript front ends to GraphQL APIs, regulated crediting calculations and data pipelines..",
     skills: [
       "React",
       "TypeScript",

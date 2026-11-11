@@ -27,6 +27,7 @@ export const Projects = () => {
         alignItems: "center",
         px: 4,
         py: 8,
+        scrollMarginTop: "90px"
       }}
     >
       <Typography variant="h2" component="h2" gutterBottom>
@@ -82,7 +83,7 @@ export const Projects = () => {
                 </Box>
 
                 {link && (
-                  <Box sx={{ mt: 1 }}>
+                  <Box sx={{ mt: 1, display: 'flex' }}>
                     <Link
                       href={link}
                       target="_blank"

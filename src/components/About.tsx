@@ -51,42 +51,6 @@ export const About = () => {
           Brisbane.
         </Typography>
 
-        <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap" sx={{ mt: 4, mb:2 }}>
-          <Button
-            variant="contained"
-            startIcon={<Email />}
-            href="mailto:gayathrimenakath@gmail.com"
-          >
-            Email
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<LinkedIn />}
-            href="https://www.linkedin.com/in/gayathri-menakath-37ab31106"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<GitHub />}
-            href="https://github.com/Gayathrimenakath"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<Description />}
-            href="resume"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Resume
-          </Button>
-        </Stack>
       </Box>
     </Box>
   );
