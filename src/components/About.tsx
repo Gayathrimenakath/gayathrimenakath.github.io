@@ -1,7 +1,4 @@
-import { Description, Email, GitHub, LinkedIn } from "@mui/icons-material";
-import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
-import resume from "../assets/resume_GayathriMenakath.pdf";
-
+import { Box, Typography, useTheme } from "@mui/material";
 
 export const About = () => {
   const theme = useTheme();
